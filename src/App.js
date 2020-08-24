@@ -1,25 +1,98 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+//import Data from "./data";
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import HomeScreen from "./Screens/HomeScreen";
+import CartScreen from "./Screens/CartScreen";
+import SigninScreen from "./Screens/SigninScreen";
+import RegisterScreen from "./Screens/RegisterScreen";
+import ProductScreen from "./Screens/ProductScreen";
+import ProductsScreen from "./Screens/ProductsScreen";
+import ShippingScreen from "./Screens/ShippingScreen";
+import PaymentScreen from "./Screens/PaymentScreen";
+import PlaceOrderScreen from "./Screens/PlaceOrderScreen";
+import OrderScreen from "./Screens/OrderScreen";
+import ProfileScreen from "./Screens/ProfileScreen";
+import OrdersScreen from "./Screens/OrdersScreen";
 
 function App() {
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
+  const openMenu = () => {
+    document.querySelector(".sidebar").classList.add("open");
+  };
+
+  const closeMenu = () => {
+    document.querySelector(".sidebar").classList.remove("open");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="grid-container">
+        <header className="header">
+          <div className="brand">
+            <button onClick={openMenu}>&#9776;</button>
+            <Link to="/">flipdeal</Link>
+          </div>
+          <div className="header-links">
+            <a href="/cart">Card</a>
+            {userInfo ? (
+              <Link to="/profile">{userInfo.name}</Link>
+            ) : (
+              <Link to="/signin">Sign In</Link>
+            )}
+            {userInfo && userInfo.isAdmin && (
+              <div className="dropdown">
+                <a href="#">Admin</a>
+                <ul className="dropdown-content">
+                  <li>
+                    <Link to="/orders">Orders</Link>
+                    <Link to="/products">Products</Link>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        </header>
+
+        <aside className="sidebar">
+          <h3>Shopping Categories</h3>
+          <button className="sidebar-close-button" onClick={closeMenu}>
+            x
+          </button>
+          <ul className="categories">
+            <li>
+              <Link to="/category/Pants">Pants</Link>
+            </li>
+
+            <li>
+              <Link to="/category/Shirts">Shirts</Link>
+            </li>
+          </ul>
+        </aside>
+
+        <main className="main">
+          <div className="content">
+            <Route path="/orders" component={OrdersScreen} />
+            <Route path="/profile" component={ProfileScreen} />
+            <Route path="/order/:id" component={OrderScreen} />
+            <Route path="/products" exact component={ProductsScreen} />
+            <Route path="/shipping" component={ShippingScreen}></Route>
+            <Route path="/payment" component={PaymentScreen}></Route>
+            <Route path="/placeorder" component={PlaceOrderScreen}></Route>
+            <Route path="/signin" component={SigninScreen}></Route>
+            <Route path="/register" component={RegisterScreen}></Route>
+            <Route path="/products/:id" component={ProductScreen}></Route>
+            <Route path="/cart/:id?" component={CartScreen}></Route>
+            <Route path="/category/:id" component={HomeScreen} />
+            <Route path="/" exact={true} component={HomeScreen}></Route>
+          </div>
+        </main>
+        <footer className="footer">All right reserved.</footer>
+      </div>
+    </BrowserRouter>
   );
 }
 
