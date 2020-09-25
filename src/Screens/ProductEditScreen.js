@@ -24,6 +24,7 @@ const ProductsScreen = (props) => {
   const [countInStock, setCountInStock] = useState("");
   const [description, setDescription] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [productStatus, setProductStatus] = useState("");
 
   const productList = useSelector((state) => state.productList);
   const { loading, products, error } = productList;
@@ -95,6 +96,11 @@ const ProductsScreen = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if (id) {
+      setProductStatus("Updated");
+    } else {
+      setProductStatus("Created");
+    }
     dispatch(
       saveProduct({
         _id: id,
@@ -111,6 +117,7 @@ const ProductsScreen = (props) => {
 
   const deleteHandler = (product) => {
     dispatch(deleteProduct(product._id));
+    setProductStatus("Deleted");
   };
 
   const isFormValid = () => {
@@ -242,7 +249,7 @@ const ProductsScreen = (props) => {
         )}
 
         <Modal show={modalStatus} modalClosed={setModalStatus}>
-          <strong>Product is updated:</strong>
+          <strong>Product is {productStatus}:</strong>
           <p>ID: {id}</p>
           <p>Name: {name}</p>
         </Modal>
