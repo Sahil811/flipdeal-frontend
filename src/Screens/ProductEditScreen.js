@@ -162,16 +162,6 @@ const ProductsScreen = (props) => {
                   />
                 </li>
 
-                {/* <li>
-                <label htmlFor="image">Image Url</label>
-                <input
-                  id="image"
-                  type="text"
-                  placeholder="Enter image url"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                />
-              </li> */}
                 <li>
                   <label htmlFor="image-file">Image File</label>
                   <input
