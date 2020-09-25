@@ -507,3 +507,21 @@ td .button {
 .categories a:hover {
   background-color: #c0c0c0;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin-right: 40px;
+}
+
+.pagination > li {
+  border: 1px solid gray;
+  padding: 1px;
+  margin: 1px;
+}
+
+.productNumber {
+  text-align: center;
+}

@@ -32,7 +32,10 @@ const ProductScreen = (props) => {
       ) : (
         <div className="details">
           <div className="details-image">
-            <img src={product.image} alt="product"></img>
+            <img
+              src={`data:image/jpg;base64,${product?.image?.imageData.image}`}
+              alt="product"
+            ></img>
           </div>
           <div className="details-info">
             <ul>

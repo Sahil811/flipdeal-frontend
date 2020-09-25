@@ -9,6 +9,8 @@ const PlaceOrderScreen = (props) => {
   const cart = useSelector((state) => state.cart);
   const { cartItems, shipping, payment } = cart;
 
+  console.log(cartItems);
+
   const orderCreate = useSelector((state) => state.orderCreate);
   const { loading, success, error, order } = orderCreate;
 
@@ -72,7 +74,10 @@ const PlaceOrderScreen = (props) => {
                 cartItems.map((item) => (
                   <li key={item.product}>
                     <div className="cart-image">
-                      <img src={item.image} alt="product" />
+                      <img
+                        src={`data:image/jpg;base64,${item?.image?.imageData.image}`}
+                        alt="product"
+                      />
                     </div>
 
                     <div className="cart-name">

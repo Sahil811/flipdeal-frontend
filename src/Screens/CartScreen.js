@@ -43,7 +43,10 @@ const CartScreen = (props) => {
             cartItems.map((item) => (
               <li key={item.product}>
                 <div className="cart-image">
-                  <img src={item.image} alt="product" />
+                  <img
+                    src={`data:image/jpg;base64,${item?.image?.imageData.image}`}
+                    alt="product"
+                  />
                 </div>
 
                 <div className="cart-name">

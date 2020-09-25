@@ -63,7 +63,7 @@ function HomeScreen(props) {
                 <Link to={"/products/" + product._id}>
                   <img
                     className="product-image"
-                    src={product.image}
+                    src={`data:image/jpg;base64,${product?.image?.imageData.image}`}
                     alt="product"
                   />
                 </Link>

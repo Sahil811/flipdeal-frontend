@@ -24,7 +24,6 @@ const listProducts = (
 ) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    console.log(category, searchKeyword, sortOrder);
     const { data } = await axios.get(
       "/api/products?category=" +
         category +
