@@ -58,6 +58,12 @@ const ProductsScreen = (props) => {
       setModalVisible(false);
       setModalStatus(true);
     }
+
+    if (successDelete) {
+      setModalVisible(false);
+      setModalStatus(true);
+    }
+
     dispatch(listProducts());
     return () => {};
   }, [successSave, successDelete]);
@@ -119,6 +125,8 @@ const ProductsScreen = (props) => {
   const deleteHandler = (product) => {
     dispatch(deleteProduct(product._id));
     setProductStatus("Deleted");
+    setName(product.name);
+    setId(product._id);
   };
 
   const isFormValid = () => {
