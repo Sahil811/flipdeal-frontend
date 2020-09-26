@@ -121,7 +121,7 @@ const ProductsScreen = (props) => {
   };
 
   const isFormValid = () => {
-    return name && brand && category && price && countInStock;
+    return name && brand && category && price && countInStock && description;
   };
 
   return (
