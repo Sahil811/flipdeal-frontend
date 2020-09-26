@@ -92,6 +92,7 @@ const ProductsScreen = (props) => {
     setBrand(product.brand);
     setCategory(product.category);
     setCountInStock(product.countInStock);
+    setImageId(product?.image?._id);
   };
 
   const submitHandler = (e) => {
@@ -121,7 +122,15 @@ const ProductsScreen = (props) => {
   };
 
   const isFormValid = () => {
-    return name && brand && category && price && countInStock && description;
+    return (
+      name &&
+      brand &&
+      category &&
+      price &&
+      countInStock &&
+      description &&
+      imageId
+    );
   };
 
   return (
