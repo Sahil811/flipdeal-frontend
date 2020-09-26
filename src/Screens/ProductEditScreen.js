@@ -123,10 +123,10 @@ const ProductsScreen = (props) => {
   };
 
   const deleteHandler = (product) => {
-    dispatch(deleteProduct(product._id));
     setProductStatus("Deleted");
     setName(product.name);
     setId(product._id);
+    dispatch(deleteProduct(product._id));
   };
 
   const isFormValid = () => {
